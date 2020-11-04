@@ -2,7 +2,7 @@
 
 This is a simple devcontainer which can be used with CodeSpaces or VSCode Remote to get all the tooling needed to start authoring bicep. 
 
-## Quick Start
+## Quick Start: VSCode Remote
 
 1. Clone the repository.
 1. Configuration for the development environment by installing VSCode and the Devcontainers extension. [Quick start docs here](https://code.visualstudio.com/docs/remote/containers-tutorial).
@@ -10,9 +10,12 @@ This is a simple devcontainer which can be used with CodeSpaces or VSCode Remote
 devcontain1. [`CTRL+SHIFT+P` then type `Reopen in container`](https://code.visualstudio.com/docs/remote/containers#_getting-started) to open the devcontainer in VSCode.
 1. [Open a terminal in VSCode with `CTRL+SHIFT+P` -> `Terminal: Create new integrated terminal`](https://code.visualstudio.com/docs/remote/containers#_opening-a-terminal). We'll use this to run Bicep commands.
 1. [Run `az login`](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli) from the VSCode terminal to connect to your Azure account.
-1. Open `main.bicep` and change `CHANGEME_TO_A_UNIQUE_NAME` to a unique name valid for a storage account.
-1. Run `make deploy` from the VSCode terminal to build and deploy the `main.bicep` file.
-1. Review the `Makefile` to see the commands run when `make deploy` is called.
+1. Run `bicep build main.bicep` this will generate `main.json` which is the ARM template ready to be deployed.
+1. Run the following to create a resource group and deploy the template to it.
+```
+	az group create -n my-rg -l eastus
+	az deployment group create -f ./main.json -g my-rg
+```
 
 ## Next Steps
 

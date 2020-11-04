@@ -1,5 +1,5 @@
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
-    name: 'CHANGEME_TO_A_UNIQUE_NAME'
+    name: uniqueString(resourceGroup().id)
     location: 'eastus'
     kind: 'Storage'
     sku: {
