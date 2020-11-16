@@ -1,10 +1,10 @@
-# Find the Dockerfile for mcr.microsoft.com/azure-functions/dotnet:3.0-dotnet3-core-tools at this URL
-# https://github.com/Azure/azure-functions-docker/blob/master/host/3.0/buster/amd64/dotnet/dotnet-core-tools.Dockerfile
-FROM mcr.microsoft.com/azure-functions/dotnet:3.0-dotnet3-core-tools
 # Start from the dotnet base image to allow easy install of Powershell and ensure common tools are available for things like the bicep language server.
+FROM mcr.microsoft.com/dotnet/sdk:5.0
 
 # Configure the release version of Bicep you'd like to use
 ARG BICEP_VERSION=latest
+# Pinned to ensure compatability with dotnet version installed in container
+ARG POWSERSHELL_VERSION=7.1.0
 
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
@@ -16,7 +16,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Install Azure Powershell
 ENV PATH="$PATH:/root/.dotnet/tools"
 RUN \
-    dotnet tool install -g powershell \
+    dotnet tool install -g powershell --version $POWSERSHELL_VERSION \
     && pwsh -c "Install-Module -Name Az -AllowClobber -Scope AllUsers -Force"
 
 # Install Bicep
@@ -30,4 +30,4 @@ RUN \
     # Verify you can now access the 'bicep' command
     && bicep --help \
     # Download the bicep vscode extension for installation
-    && curl -Lo vscode-bicep.vsix https://github.com/Azure/bicep/releases/${BICEP_VERSION}/download/vscode-bicep.vsix
+    && curl -Lo /tmp/vscode-bicep.vsix https://github.com/Azure/bicep/releases/${BICEP_VERSION}/download/vscode-bicep.vsix
