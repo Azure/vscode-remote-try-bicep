@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0
 # Configure the release version of Bicep you'd like to use
 ARG BICEP_VERSION=latest
 # Pinned to ensure compatability with dotnet version installed in container
-ARG POWSERSHELL_VERSION=7.1.0
+ARG POWSERSHELL_VERSION=7.1.1
 
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
