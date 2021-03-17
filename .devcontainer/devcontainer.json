@@ -16,7 +16,7 @@
 	],
 
 	"mounts": [
-		// This mount ensures that the Azrue Powershell credentials aren't lost between
+		// This mount ensures that the Azure Powershell credentials aren't lost between
 		// runs of the container.
 		"type=volume,source=bicepazpowershellcreds,target=/root/.Azure",
 		// same thing for the Azure CLI
