@@ -4,7 +4,7 @@ This is a simple devcontainer which can be used with CodeSpaces or VSCode Remote
 
 ## Quick Start: VSCode Remote
 1. Clone the repository.
-1. Configure the development environment by installing VSCode and the "Remote - Containers" extension. [Quick start docs here](https://code.visualstudio.com/docs/remote/containers-tutorial).
+1. Configure the development environment by installing VSCode and the "Dev Containers" extension or "Remote Development" extension pack. [Quick start docs here](https://code.visualstudio.com/docs/remote/containers-tutorial).
 1. Open the repository in VSCode
 1. [`CTRL+SHIFT+P` then type `Reopen in container`](https://code.visualstudio.com/docs/remote/containers#_getting-started) to open the devcontainer in VSCode.
 1. [Open a terminal in VSCode with `CTRL+SHIFT+P` -> `Terminal: Create new integrated terminal`](https://code.visualstudio.com/docs/remote/containers#_opening-a-terminal). We'll use this to run Bicep commands.
