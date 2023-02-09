@@ -1,17 +1,26 @@
 {
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "VARIANT": "ubuntu-22.04"
+    "build": {
+      "dockerfile": "Dockerfile",
+      "args": {
+        "VARIANT": "ubuntu-22.04"
+      }
+    },
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "ms-azuretools.vscode-azureresourcegroups",
+                "ms-azuretools.vscode-bicep",
+                "editorconfig.editorconfig"
+              ]
+        }
+    },
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "latest",
+            "installBicep": true
+      }
     }
-  },
-  "extensions": [
-    "ms-azuretools.vscode-azureresourcegroups",
-    "ms-azuretools.vscode-bicep",
-    "editorconfig.editorconfig"
-  ],
-  "remoteUser": "vscode",
-  "features": {
-    "azure-cli": "latest"
   }
-}
